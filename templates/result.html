@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Text Analysis Results</h1>
+    
+    <div class="results-grid">
+        <div class="result-card">
+            <h3>Word Count</h3>
+            <p class="number">{{ analysis.word_count }}</p>
+        </div>
+        
+        <div class="result-card">
+            <h3>Character Count</h3>
+            <p class="number">{{ analysis.char_count }}</p>
+            <p class="sub-text">({{ analysis.char_count_no_space }} excluding spaces)</p>
+        </div>
+        
+        <div class="result-card">
+            <h3>Sentences</h3>
+            <p class="number">{{ analysis.sentence_count }}</p>
+        </div>
+        
+        <div class="result-card">
+            <h3>Paragraphs</h3>
+            <p class="number">{{ analysis.paragraph_count }}</p>
+        </div>
+        
+        <div class="result-card">
+            <h3>Reading Time</h3>
+            <p class="number">{{ "%.1f"|format(analysis.reading_time) }}</p>
+            <p class="sub-text">minutes</p>
+        </div>
+    </div>
+    
+    <div class="word-frequency">
+        <h2>Most Common Words</h2>
+        <div class="word-list">
+            {% for word, count in analysis.most_common_words %}
+            <div class="word-item">
+                <span class="word">{{ word }}</span>
+                <span class="count">{{ count }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="button-container">
+        <a href="{{ url_for('post') }}" class="btn">Analyze Another Text</a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Text Analyzer</h1>
+    <p class="description">Paste your text below to analyze its content, including word count, character count, and more!</p>
+    <form action="{{ url_for('post') }}" method="POST">
+        <div class="form-group">
+            <textarea name="content" rows='10' class="text-input" placeholder="Enter your text here..." autofocus required></textarea>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn">Analyze Text</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
